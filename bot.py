@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import random
 from datetime import datetime, timedelta
 import tweepy
 from config import consumer_key, consumer_secret, access_key, access_secret
@@ -40,7 +41,8 @@ class Bot(tweepy.streaming.StreamListener):
             pass
 
     def tweet_tekito(self, text):
-        self.next_time = datetime.now() + timedelta(seconds = 30)
+        next_timedelta = random.randint(40, 80)
+        self.next_time = datetime.now() + timedelta(seconds = next_timedelta)
         protected = ps.protect_secret(text)
         self.tweet(protected)
 
