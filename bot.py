@@ -25,7 +25,12 @@ class Bot(tweepy.streaming.StreamListener):
             self.tweet_tekito(tweet.text)
 
     def tweet(self, text):
-        self.api.update_status(text)
+        try:
+            self.api.update_status(text)
+            print text
+        except tweepy.error.TweepError:
+            print 'ついーとえらーだって'
+        print
 
     def run(self):
         stream = tweepy.Stream(self.api.auth, listener = self, retry_count = 10, retry_time = 60.0)
@@ -38,7 +43,6 @@ class Bot(tweepy.streaming.StreamListener):
         self.next_time = datetime.now() + timedelta(seconds = 30)
         protected = ps.protect_secret(text)
         self.tweet(protected)
-        print protected, u'\n'
 
 
 if __name__ == '__main__':
