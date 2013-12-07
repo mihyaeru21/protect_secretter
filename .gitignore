@@ -1,3 +1,5 @@
 idea.md
-tweets.sqlite
+config.py
+
+*.pyc
 
