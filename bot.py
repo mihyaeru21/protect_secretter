@@ -42,7 +42,7 @@ class Bot(tweepy.streaming.StreamListener):
 
     def tweet_tekito(self, text):
         next_timedelta = random.randint(40, 80)
-        self.next_time = datetime.now() + timedelta(seconds = next_timedelta)
+        self.next_time = datetime.now() + timedelta(minutes = next_timedelta)
         protected = ps.protect_secret(text)
         self.tweet(protected)
 
