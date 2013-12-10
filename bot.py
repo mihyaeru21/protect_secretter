@@ -2,6 +2,7 @@
 
 import random
 from datetime import datetime, timedelta
+from xml.sax.saxutils import unescape
 import tweepy
 from config import consumer_key, consumer_secret, access_key, access_secret
 import protect_secret as ps
@@ -23,7 +24,8 @@ class Bot(tweepy.streaming.StreamListener):
         if lang != u'ja':
             return
         if datetime.now() > self.next_time:
-            self.tweet_tekito(tweet.text)
+            text = unescape(tweet.text)
+            self.tweet_tekito(text)
 
     def tweet(self, text):
         try:
